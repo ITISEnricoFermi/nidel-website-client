@@ -22,7 +22,12 @@ export default {
 <style lang="scss">
 .main {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+
+  @include respond(tab-lan) {
+    min-height: 100vh;
+    height: auto!important;
+  }
 
   .header {
       width: 100%;
