@@ -22,7 +22,7 @@ export default {
 <style lang="scss">
 .main {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   .header {
       width: 100%;
