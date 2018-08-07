@@ -47,7 +47,7 @@ export default {
     chart.addTimeSeries(this.timeSerie, {
       strokeStyle: `rgba(${this.color}, 1)`,
       fillStyle: `rgba(${this.color}, 0.2)`,
-      lineWidth: 4
+      lineWidth: 12
     })
     chart.streamTo(canvas, 500)
 
