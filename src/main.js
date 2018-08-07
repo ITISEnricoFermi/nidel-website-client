@@ -11,11 +11,17 @@ export const SocketInstance = socketio('/', {secure: true, rejectUnauthorized: f
 
 export const eventBus = new Vue({
   methods: {
-    temperature (temp) {
-      this.$emit('temperature', temp)
+    temperature_internal (temp) {
+      this.$emit('temperature_internal', temp)
     },
-    humidity (humi) {
-      this.$emit('humidity', humi)
+    humidity_internal (humi) {
+      this.$emit('humidity_internal', humi)
+    },
+    temperature_external (temp) {
+      this.$emit('temperature_external', temp)
+    },
+    humidity_external (humi) {
+      this.$emit('humidity_external', humi)
     },
     pressure (press) {
       this.$emit('pressure', press)

@@ -2,30 +2,44 @@
 <div class="live">
   <div class="content">
     <div class="plotter-box">
-      <app-plotter data="temperature" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter data="temperature_internal" :color="green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
-        <p class="tag">Temperature</p>
-        <p class="value">{{ data.temperature + '°' }}</p>
+        <p class="tag">Temperatura Interna</p>
+        <p class="value">{{ data.temperature_internal + '°' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'humidity'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="'humidity_internal'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
-        <p class="tag">Humidity</p>
-        <p class="value">{{ data.humidity + '%' }}</p>
+        <p class="tag">Umidità Interna</p>
+        <p class="value">{{ data.humidity_internal + '%' }}</p>
       </div>
     </div>
     <div class="plotter-box">
       <app-plotter :data="'pressure'" :color="blue" :max="'1500'" :min="'500'"></app-plotter>
       <div class="values">
-        <p class="tag">Pressure</p>
+        <p class="tag">Pressione</p>
         <p class="value">{{ data.pressure + 'hPa' }}</p>
+      </div>
+    </div>
+    <div class="plotter-box">
+      <app-plotter data="temperature_external" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <div class="values">
+        <p class="tag">Temperatura Esterna</p>
+        <p class="value">{{ data.temperature_external + '°' }}</p>
+      </div>
+    </div>
+    <div class="plotter-box">
+      <app-plotter :data="'humidity_external'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <div class="values">
+        <p class="tag">Umidità Esterna</p>
+        <p class="value">{{ data.humidity_external + '%' }}</p>
       </div>
     </div>
     <div class="plotter-box">
       <app-plotter :data="'altitude'" :color="red" :max="'2000'" :min="'-500'"></app-plotter>
       <div class="values">
-        <p class="tag">Altitude</p>
+        <p class="tag">Altitudine</p>
         <p class="value">{{ data.altitude + 'm' }}</p>
       </div>
     </div>
@@ -49,21 +63,31 @@ export default {
       blue: '56, 151, 240',
       yellow: '243, 163, 42',
       data: {
-        temperature: 0,
-        humidity: 0,
+        temperature_internal: 0,
+        humidity_internal: 0,
+        temperature_external: 0,
+        humidity_external: 0,
         pressure: 0,
         altitude: 0
       }
     }
   },
   sockets: {
-    temperature (temp) {
-      eventBus.temperature(temp)
-      this.data.temperature = Number(temp)
+    temperature_internal (temp) {
+      eventBus.temperature_internal(temp)
+      this.data.temperature_internal = Number(temp)
     },
-    humidity (humi) {
-      eventBus.humidity(humi)
-      this.data.humidity = Number(humi)
+    humidity_internal (humi) {
+      eventBus.humidity_internal(humi)
+      this.data.humidity_internal = Number(humi)
+    },
+    temperature_external (temp) {
+      eventBus.temperature_external(temp)
+      this.data.temperature_external = Number(temp)
+    },
+    humidity_external (humi) {
+      eventBus.humidity_external(humi)
+      this.data.humidity_external = Number(humi)
     },
     pressure (press) {
       eventBus.pressure(press)
@@ -102,7 +126,7 @@ export default {
         grid-gap: 3vh;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: 'temperature temperature humidity humidity pressure pressure' 'altitude altitude altitude altitude altitude altitude';
+        grid-template-areas: 'temperature_internal temperature_internal humidity_internal humidity_internal pressure pressure' 'temperature_external temperature_external humidity_external humidity_external altitude altitude';
 
         @include respond(tab-lan) {
             display: block;
@@ -116,11 +140,11 @@ export default {
           }
 
           &:nth-child(1) {
-            grid-area: temperature;
+            grid-area: temperature_internal;
           }
 
           &:nth-child(2) {
-            grid-area: humidity;
+            grid-area: humidity_internal;
           }
 
           &:nth-child(3) {
@@ -128,6 +152,14 @@ export default {
           }
 
           &:nth-child(4) {
+            grid-area: temperature_external;
+          }
+
+          &:nth-child(5) {
+            grid-area: humidity_external;
+          }
+
+          &:nth-child(6) {
             grid-area: altitude;
           }
 
