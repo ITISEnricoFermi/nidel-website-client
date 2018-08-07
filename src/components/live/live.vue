@@ -2,14 +2,14 @@
 <div class="live">
   <div class="content">
     <div class="plotter-box">
-      <app-plotter :data="data.temperature_internal" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="temperature_internal" :color="green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Temperatura Interna</p>
         <p class="value">{{ data.temperature_internal + '°' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="data.humidity_internal" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter data="data.humidity_internal" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Umidità Interna</p>
         <p class="value">{{ data.humidity_internal + '%' }}</p>
@@ -76,22 +76,18 @@ export default {
     temperature_internal (temp) {
       eventBus.temperature_internal(temp)
       this.data.temperature_internal = Number(temp)
-      console.log(this.data)
     },
     humidity_internal (humi) {
       eventBus.humidity_internal(humi)
       this.data.humidity_internal = Number(humi)
-      console.log(this.data)
     },
     temperature_external (temp) {
       eventBus.temperature_external(temp)
       this.data.temperature_external = Number(temp)
-      console.log(this.data)
     },
     humidity_external (humi) {
       eventBus.humidity_external(humi)
       this.data.humidity_external = Number(humi)
-      console.log(this.data)
     },
     pressure (press) {
       eventBus.pressure(press)
