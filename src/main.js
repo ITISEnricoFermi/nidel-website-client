@@ -26,14 +26,8 @@ export const eventBus = new Vue({
     pressure (press) {
       this.$emit('pressure', press)
     },
-    altitude (alt) {
-      this.$emit('altitude', alt)
-    },
-    orientation (ori) {
-      this.$emit('orientation', ori)
-    },
-    position (pos) {
-      this.$emit('position', pos)
+    capacity (cap) {
+      this.$emit('capacity', cap)
     }
   }
 })

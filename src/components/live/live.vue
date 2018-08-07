@@ -19,7 +19,7 @@
       <app-plotter :data="'pressure'" :color="italy.red" :max="'1500'" :min="'500'"></app-plotter>
       <div class="values">
         <p class="tag">Pressione</p>
-        <p class="value">{{ data.pressure + 'hPa' }}</p>
+        <p class="value">{{ data.pressure + 'ppm' }}</p>
       </div>
     </div>
     <div class="plotter-box">
@@ -37,10 +37,10 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'altitude'" :color="italy.red" :max="'2000'" :min="'-500'"></app-plotter>
+      <app-plotter :data="'capacity'" :color="italy.red" :max="'2000'" :min="'-500'"></app-plotter>
       <div class="values">
         <p class="tag">Capacità elettrica</p>
-        <p class="value">{{ data.altitude + 'pF' }}</p>
+        <p class="value">{{ data.capacity + 'pF' }}</p>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ export default {
         temperature_external: 0,
         humidity_external: 0,
         pressure: 0,
-        altitude: 0
+        capacity: 0
       }
     }
   },
@@ -98,9 +98,9 @@ export default {
       eventBus.pressure(press)
       this.data.pressure = Number(press)
     },
-    altitude (alt) {
-      eventBus.altitude(alt)
-      this.data.altitude = Number(alt)
+    capacity (cap) {
+      eventBus.capacity(cap)
+      this.data.capacity = Number(cap)
     },
     orientation (ori) {
       eventBus.orientation(ori)
@@ -109,7 +109,7 @@ export default {
     position (pos) {
       eventBus.position(pos)
       this.data.position = pos
-      this.data.altitude = pos.altitude
+      this.data.capacity = pos.capacity
     }
   },
   components: {
@@ -131,7 +131,7 @@ export default {
         grid-gap: 3vh;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: 'temperature_internal temperature_internal humidity_internal humidity_internal pressure pressure' 'temperature_external temperature_external humidity_external humidity_external altitude altitude';
+        grid-template-areas: 'temperature_internal temperature_internal humidity_internal humidity_internal pressure pressure' 'temperature_external temperature_external humidity_external humidity_external capacity capacity';
 
         @include respond(tab-lan) {
             display: block;
@@ -165,7 +165,7 @@ export default {
           }
 
           &:nth-child(6) {
-            grid-area: altitude;
+            grid-area: capacity;
           }
 
         }
