@@ -2,45 +2,45 @@
 <div class="live">
   <div class="content">
     <div class="plotter-box">
-      <app-plotter :data="'temperature_internal'" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="'temperature_internal'" :color="italy.green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Temperatura Interna</p>
         <p class="value">{{ data.temperature_internal + '°C' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'humidity_internal'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="'humidity_internal'" :color="italy.white" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Umidità Interna</p>
         <p class="value">{{ data.humidity_internal + '%' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'pressure'" :color="blue" :max="'1500'" :min="'500'"></app-plotter>
+      <app-plotter :data="'pressure'" :color="italy.red" :max="'1500'" :min="'500'"></app-plotter>
       <div class="values">
         <p class="tag">Pressione</p>
         <p class="value">{{ data.pressure + 'hPa' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'temperature_external'" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="'temperature_external'" :color="italy.green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Temperatura Esterna</p>
         <p class="value">{{ data.temperature_external + '°C' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'humidity_external'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="'humidity_external'" :color="italy.white" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Umidità Esterna</p>
         <p class="value">{{ data.humidity_external + '%' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'altitude'" :color="red" :max="'2000'" :min="'-500'"></app-plotter>
+      <app-plotter :data="'altitude'" :color="italy.red" :max="'2000'" :min="'-500'"></app-plotter>
       <div class="values">
-        <p class="tag">Altitudine</p>
-        <p class="value">{{ data.altitude + 'm' }}</p>
+        <p class="tag">Capacità elettrica</p>
+        <p class="value">{{ data.altitude + 'pF' }}</p>
       </div>
     </div>
   </div>
@@ -62,6 +62,11 @@ export default {
       green: '0, 255, 0',
       blue: '56, 151, 240',
       yellow: '243, 163, 42',
+      italy: {
+        green: '0, 146, 70',
+        white: '241, 242, 241',
+        red: '206, 43, 55'
+      },
       data: {
         temperature_internal: 0,
         humidity_internal: 0,
