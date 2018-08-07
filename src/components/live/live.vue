@@ -9,14 +9,14 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'humidity_internal'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="humidity_internal" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Umidità Interna</p>
         <p class="value">{{ data.humidity_internal + '%' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'pressure'" :color="blue" :max="'1500'" :min="'500'"></app-plotter>
+      <app-plotter :data="pressure" :color="blue" :max="'1500'" :min="'500'"></app-plotter>
       <div class="values">
         <p class="tag">Pressione</p>
         <p class="value">{{ data.pressure + 'hPa' }}</p>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'humidity_external'" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="humidity_external" :color="yellow" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Umidità Esterna</p>
         <p class="value">{{ data.humidity_external + '%' }}</p>
