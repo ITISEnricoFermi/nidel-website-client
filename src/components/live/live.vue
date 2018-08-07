@@ -76,18 +76,22 @@ export default {
     temperature_internal (temp) {
       eventBus.temperature_internal(temp)
       this.data.temperature_internal = Number(temp)
+      console.log(this.data)
     },
     humidity_internal (humi) {
       eventBus.humidity_internal(humi)
       this.data.humidity_internal = Number(humi)
+      console.log(this.data)
     },
     temperature_external (temp) {
       eventBus.temperature_external(temp)
       this.data.temperature_external = Number(temp)
+      console.log(this.data)
     },
     humidity_external (humi) {
       eventBus.humidity_external(humi)
       this.data.humidity_external = Number(humi)
+      console.log(this.data)
     },
     pressure (press) {
       eventBus.pressure(press)
