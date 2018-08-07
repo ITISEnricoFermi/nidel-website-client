@@ -2,7 +2,7 @@
 <div class="live">
   <div class="content">
     <div class="plotter-box">
-      <app-plotter data="temperature_internal" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="temperature_internal" :color="green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Temperatura Interna</p>
         <p class="value">{{ data.temperature_internal + '°' }}</p>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter data="temperature_external" :color="green" :max="'100'" :min="'0'"></app-plotter>
+      <app-plotter :data="temperature_external" :color="green" :max="'100'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Temperatura Esterna</p>
         <p class="value">{{ data.temperature_external + '°' }}</p>
