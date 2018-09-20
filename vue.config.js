@@ -14,14 +14,14 @@ module.exports = {
       // }
     }
   },
-  // css: {
-  //   loaderOptions: {
-  //     // pass options to sass-loader
-  //     sass: {
-  //       data: `@import "@/scss/main.scss";`
-  //     }
-  //   }
-  // },
+  css: {
+    loaderOptions: {
+      // pass options to sass-loader
+      sass: {
+        data: `@import "@/scss/main.scss";`
+      }
+    }
+  },
   pwa: {
     name: 'Nidel',
     themeColor: '#282828',
