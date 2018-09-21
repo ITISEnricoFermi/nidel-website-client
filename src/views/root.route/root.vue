@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Live from '../live/live.vue'
+import Live from '@/components/live/live'
 
 export default {
   components: {
