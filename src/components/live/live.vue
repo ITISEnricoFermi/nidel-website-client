@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'pressure'" :color="italy.red" :max="'1500'" :min="'500'"></app-plotter>
+      <app-plotter :data="'gas'" :color="italy.red" :max="'1023'" :min="'0'"></app-plotter>
       <div class="values">
-        <p class="tag">Pressione</p>
-        <p class="value">{{ data.pressure + 'ppm' }}</p>
+        <p class="tag">Metano e CO2</p>
+        <p class="value">{{ data.gas + 'ppm' }}</p>
       </div>
     </div>
     <div class="plotter-box">
@@ -37,11 +37,33 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'capacity'" :color="italy.red" :max="'2000'" :min="'-500'"></app-plotter>
+      <app-plotter :data="'lum_internal'" :color="italy.red" :max="'40000'" :min="'-500'"></app-plotter>
       <div class="values">
-        <p class="tag">Capacità elettrica</p>
-        <p class="value">{{ data.capacity + 'pF' }}</p>
+        <p class="tag">Luminosità Interna</p>
+        <p class="value">{{ data.lum_internal + 'lux' }}</p>
       </div>
+    </div>
+    <div class="plotter-box">
+      <app-plotter :data="'lum_external'" :color="italy.red" :max="'80000'" :min="'-500'"></app-plotter>
+      <div class="values">
+        <p class="tag">Luminosità Esterna</p>
+        <p class="value">{{ data.lum_external + 'lux' }}</p>
+      </div>
+    </div>
+    <div class="counter-box">
+      <app-single-counter :value="birds" :crop="'Uccelli'">
+        <i class="fas fa-crow"></i>
+      </app-single-counter>
+    </div>
+    <div class="counter-box">
+      <app-single-counter :value="out" :crop="'Uscite'">
+        <i class="fas fa-sign-out-alt"></i>
+      </app-single-counter>
+    </div>
+    <div class="counter-box">
+      <app-single-counter :value="entrance" :crop="'Ingressi'">
+        <i class="fas fa-sign-in-alt"></i>
+      </app-single-counter>
     </div>
   </div>
 </div>
@@ -54,6 +76,7 @@ import {
 
 import Values from './values.vue'
 import Plotter from './plotter.vue'
+import SingleCounter from '../counter/single'
 
 export default {
   data: () => {
@@ -72,9 +95,13 @@ export default {
         humidity_internal: 0,
         temperature_external: 0,
         humidity_external: 0,
-        pressure: 0,
-        capacity: 0
-      }
+        lum_internal: 0,
+        lum_external: 0,
+        gas: 0
+      },
+      birds: 0,
+      entrance: 0,
+      out: 0
     }
   },
   sockets: {
@@ -94,27 +121,23 @@ export default {
       eventBus.humidity_external(humi)
       this.data.humidity_external = Number(humi)
     },
-    pressure (press) {
-      eventBus.pressure(press)
-      this.data.pressure = Number(press)
+    gas (gas) {
+      eventBus.gas(gas)
+      this.data.gas = Number(gas)
     },
-    capacity (cap) {
-      eventBus.capacity(cap)
-      this.data.capacity = Number(cap)
+    lum_internal (lum) {
+      eventBus.lum_internal(lum)
+      this.data.lum_internal = Number(lum)
     },
-    orientation (ori) {
-      eventBus.orientation(ori)
-      this.data.orientation = ori
-    },
-    position (pos) {
-      eventBus.position(pos)
-      this.data.position = pos
-      this.data.capacity = pos.capacity
+    lum_external (lum) {
+      eventBus.lum_external(lum)
+      this.data.lum_external = Number(lum)
     }
   },
   components: {
     appValues: Values,
-    appPlotter: Plotter
+    appPlotter: Plotter,
+    appSingleCounter: SingleCounter
   }
 }
 </script>
@@ -122,16 +145,16 @@ export default {
 <style scoped lang="scss">
 .live {
     width: 100%;
+    padding: 3vh;
 
     .content {
         width: 100%;
         height: 100%;
-        padding: 3vh;
         display: grid;
         grid-gap: 3vh;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: 'temperature_internal temperature_internal humidity_internal humidity_internal pressure pressure' 'temperature_external temperature_external humidity_external humidity_external capacity capacity';
+        grid-template-rows: repeat(3, 25rem);
+        grid-template-areas: 'temperature_internal temperature_internal humidity_internal humidity_internal gas gas' 'temperature_external temperature_external humidity_external humidity_external lum_internal lum_internal' 'lum_external lum_external birds birds entrance out';
 
         @include respond(tab-lan) {
             display: block;
@@ -140,58 +163,87 @@ export default {
 
         & > * {
 
-          @include respond(tab-lan) {
-              min-height: 20rem;
-          }
+            @include respond(tab-lan) {
+                min-height: 20rem;
+            }
 
-          &:nth-child(1) {
-            grid-area: temperature_internal;
-          }
+            &:nth-child(1) {
+                grid-area: temperature_internal;
+            }
 
-          &:nth-child(2) {
-            grid-area: humidity_internal;
-          }
+            &:nth-child(2) {
+                grid-area: humidity_internal;
+            }
 
-          &:nth-child(3) {
-            grid-area: pressure;
-          }
+            &:nth-child(3) {
+                grid-area: gas;
+            }
 
-          &:nth-child(4) {
-            grid-area: temperature_external;
-          }
+            &:nth-child(4) {
+                grid-area: temperature_external;
+            }
 
-          &:nth-child(5) {
-            grid-area: humidity_external;
-          }
+            &:nth-child(5) {
+                grid-area: humidity_external;
+            }
 
-          &:nth-child(6) {
-            grid-area: capacity;
-          }
+            &:nth-child(6) {
+                grid-area: lum_internal;
+            }
+
+            &:nth-child(7) {
+                grid-area: lum_external;
+            }
+
+            &:nth-child(8) {
+                grid-area: birds;
+
+                .counter {
+                    background-image: linear-gradient($color-tertiary-light, $color-tertiary-dark);
+                }
+            }
+
+            &:nth-child(9) {
+                grid-area: entrance;
+
+                .counter {
+                    background-image: linear-gradient($color-green-light, $color-green-dark);
+                }
+            }
+
+            &:nth-child(10) {
+                grid-area: out;
+
+                .counter {
+                    background-image: linear-gradient($color-button-red, $color-red-1);
+                }
+            }
 
         }
 
-        .plotter-box, .model-box {
-          box-shadow: 0 0 2rem rgba($color-black,0.5);
-          border-radius: 0.25rem;
-          overflow: hidden;
+        .model-box,
+        .plotter-box {
+            box-shadow: 0 0 2rem rgba($color-black,0.5);
+            border-radius: 0.25rem;
+            overflow: hidden;
 
-          @include respond(tab-lan) {
+            @include respond(tab-lan) {
 
-            &:not(:last-child) {
-              margin-bottom: 3vh;
+                &:not(:last-child) {
+                    margin-bottom: 3vh;
+                }
             }
-          }
 
         }
 
         .plotter-box {
 
             .plotter {
-              height: calc(100% - 4rem);
+                height: calc(100% - 4rem);
 
-              @include respond(tab-lan) {
-                  min-height: 20rem;
-              }
+                @include respond(tab-lan) {
+                    min-height: 20rem;
+                }
             }
 
             .values {

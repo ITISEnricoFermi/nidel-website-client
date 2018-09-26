@@ -1,15 +1,15 @@
 .button {
   appearance: none;
-  border-radius: 3px;
+  // border-radius: 3px;
   border: none;
   font-weight: bold;
   color: $color-white;
   padding: 0.9rem 0.8rem;
   font-size: $font-default-2;
-  width: 100%;
   display: block;
   cursor: pointer;
   outline: none;
+  text-decoration: none;
   transition: all 0.1s ease-in-out;
 
   &:hover {

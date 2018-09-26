@@ -2,8 +2,9 @@
 <div class="main">
   <header class="header">
     <a href="/" class="logo">
-          <img src="/static/logo/enforce.svg">
-        </a>
+        <img src="/layout/logo.jpeg">
+    </a>
+    <a href="https://sciencewatching.com" class="button button--red">Torna al sito</a>
   </header>
   <app-live></app-live>
 </div>
@@ -22,27 +23,31 @@ export default {
 <style lang="scss">
 .main {
   width: 100%;
-  height: 100vh;
-
-  @include respond(tab-lan) {
-    min-height: 100vh;
-    height: auto!important;
-  }
+  height: auto!important;
+  min-height: 100vh;
 
   .header {
-      width: 100%;
+      width: 100vw;
       height: 8rem;
       background-color: $color-primary;
       display: flex;
-      align-content: space-between;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3vh;
 
       .logo {
+        display: block;
 
           img {
-              height: 4rem;
-              margin: 2rem;
+              height: 6rem;
+              clip-path: circle(45%);
           }
 
+      }
+
+      .button {
+        display: block;
+        float: right;
       }
 
   }
