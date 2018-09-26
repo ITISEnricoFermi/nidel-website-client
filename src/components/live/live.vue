@@ -56,13 +56,13 @@
       </app-single-counter>
     </div>
     <div class="counter-box">
-      <app-single-counter :value="out" :crop="'Uscite'">
-        <i class="fas fa-sign-out-alt"></i>
+      <app-single-counter :value="entrance" :crop="'Ingressi'">
+        <i class="fas fa-sign-in-alt"></i>
       </app-single-counter>
     </div>
     <div class="counter-box">
-      <app-single-counter :value="entrance" :crop="'Ingressi'">
-        <i class="fas fa-sign-in-alt"></i>
+      <app-single-counter :value="out" :crop="'Uscite'">
+        <i class="fas fa-sign-out-alt"></i>
       </app-single-counter>
     </div>
   </div>
@@ -222,8 +222,9 @@ export default {
         }
 
         .model-box,
-        .plotter-box {
-            box-shadow: 0 0 2rem rgba($color-black,0.5);
+        .plotter-box,
+        .counter-box {
+            box-shadow: 0 0 1rem rgba($color-black,0.5);
             border-radius: 0.25rem;
             overflow: hidden;
 

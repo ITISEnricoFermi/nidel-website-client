@@ -1,8 +1,7 @@
 {
-  "name": "nidel-website-client",
-  "short_name": "nidel-website-client",
-  "icons": [
-    {
+  "name": "Nidel - Live Data Streaming",
+  "short_name": "Nidel",
+  "icons": [{
       "src": "/img/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"

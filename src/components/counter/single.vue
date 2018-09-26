@@ -23,11 +23,11 @@ export default {
 
 <style scoped lang="scss">
 .counter {
-  // background-image: linear-gradient($color-green-light, $color-green-dark);
   border-radius: 0.3rem;
   width: 100%;
   height: 100%;
   position: relative;
+  min-height: 25rem;
 
   .content {
     position: absolute;
