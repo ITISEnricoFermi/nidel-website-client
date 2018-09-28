@@ -24,11 +24,14 @@ export const eventBus = new Vue({
     humidity_external (humi) {
       this.$emit('humidity_external', humi)
     },
-    pressure (press) {
-      this.$emit('pressure', press)
+    lum_internal (lum) {
+      this.$emit('lum_internal', lum)
     },
-    capacity (cap) {
-      this.$emit('capacity', cap)
+    lum_external (lum) {
+      this.$emit('lum_external', lum)
+    },
+    gas (gas) {
+      this.$emit('gas', gas)
     }
   }
 })
