@@ -37,14 +37,14 @@
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'lum_internal'" :color="italy.red" :max="'40000'" :min="'-500'"></app-plotter>
+      <app-plotter :data="'lum_internal'" :color="italy.red" :max="'40000'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Luminosità Interna</p>
         <p class="value">{{ data.lum_internal + 'lux' }}</p>
       </div>
     </div>
     <div class="plotter-box">
-      <app-plotter :data="'lum_external'" :color="blue" :max="'80000'" :min="'-500'"></app-plotter>
+      <app-plotter :data="'lum_external'" :color="blue" :max="'80000'" :min="'0'"></app-plotter>
       <div class="values">
         <p class="tag">Luminosità Esterna</p>
         <p class="value">{{ data.lum_external + 'lux' }}</p>
@@ -126,12 +126,10 @@ export default {
       this.data.gas = Number(gas)
     },
     lum_internal (lum) {
-      console.log('lum_int:', lum)
       eventBus.lum_internal(lum)
       this.data.lum_internal = Number(lum)
     },
     lum_external (lum) {
-      console.log('lum_ext', lum)
       eventBus.lum_external(lum)
       this.data.lum_external = Number(lum)
     }
