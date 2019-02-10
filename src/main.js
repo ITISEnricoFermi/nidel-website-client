@@ -8,8 +8,6 @@ import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-export const SocketInstance = socketio('/', { secure: true, rejectUnauthorized: false, transports: ['websocket', 'flashsocket', 'polling'] })
-
 export const eventBus = new Vue({
   methods: {
     temperature_internal (temp) {
@@ -36,7 +34,14 @@ export const eventBus = new Vue({
   }
 })
 
-Vue.use(VueSocketIO, SocketInstance)
+Vue.use(new VueSocketIO({
+  debug: false,
+  connection: socketio('/', {
+    secure: true,
+    rejectUnauthorized: false,
+    transports: ['websocket', 'flashsocket', 'polling']
+  })
+}))
 
 new Vue({
   router,
